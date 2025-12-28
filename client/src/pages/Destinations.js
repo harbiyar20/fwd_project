@@ -23,7 +23,8 @@ function Destinations() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/destinations')
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    fetch(`${apiUrl}/api/destinations`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch destinations.');
         return res.json();

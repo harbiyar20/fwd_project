@@ -25,7 +25,8 @@ function Booking() {
 
   const fetchBookings = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/payments');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/payments`);
       const data = await res.json();
       setBookings(data);
     } catch (error) {
@@ -48,7 +49,8 @@ function Booking() {
 
     if (emailError) return;
 
-    fetch('http://localhost:5000/api/book', {
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+    fetch(`${apiUrl}/api/book`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),
@@ -67,7 +69,8 @@ function Booking() {
     if (!window.confirm('Are you sure you want to delete this booking?')) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/payments/${id}`, {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const res = await fetch(`${apiUrl}/api/payments/${id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
