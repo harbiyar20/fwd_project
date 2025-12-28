@@ -21,6 +21,9 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/travelApp
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  ssl: true,
+  tlsAllowInvalidCertificates: false,
+  tlsAllowInvalidHostnames: false
 });
 
 const db = mongoose.connection;
