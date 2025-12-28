@@ -32,6 +32,19 @@ db.once('open', () => {
   console.log('✅ Connected to MongoDB');
 });
 
+// ✅ Health check route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Tourist Web App Backend API', 
+    status: 'Running',
+    endpoints: {
+      destinations: '/api/destinations',
+      booking: '/api/book',
+      payments: '/api/payments'
+    }
+  });
+});
+
 // ✅ Payment Schema & Model
 const paymentSchema = new mongoose.Schema({
   name: String,
