@@ -1,0 +1,9 @@
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.card h3 {
+  color: #007bff;
+  font-weight: 600;
+}
