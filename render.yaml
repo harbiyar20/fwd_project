@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: tourist-web-app-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: tourist-db
+          property: connectionString
+  
+  - type: web
+    name: tourist-web-app-frontend
+    env: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: ./client/build
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+databases:
+  - name: tourist-db
+    databaseName: travelApp
+    user: tourist_user
